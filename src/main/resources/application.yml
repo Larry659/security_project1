@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: 'security_project1'
+server:
+  port: 8080
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-alias: 'springboot'
+    key-store-password: '     '
+    key-store: classpath:keystore.p12
+
+
