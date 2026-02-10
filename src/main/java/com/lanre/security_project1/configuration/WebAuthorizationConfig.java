@@ -12,17 +12,17 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebAuthorizationConfig {
 
     @Autowired
-    private final CustomAuthenticationProvider authenticationProvider;
+    private final CustomAuthenticationProvider customAuthenticationProvider;
 
-    public WebAuthorizationConfig(CustomAuthenticationProvider authenticationProvider) {
-        this.authenticationProvider = authenticationProvider;
+    public WebAuthorizationConfig(CustomAuthenticationProvider customAuthenticationProvider) {
+       this.customAuthenticationProvider = customAuthenticationProvider;
     }
 
     @Bean
     SecurityFilterChain configure(HttpSecurity http)
             throws Exception {
         http.httpBasic(Customizer.withDefaults()); //App uses HTTP Basic authentication.
-        http.authenticationProvider(authenticationProvider);
+        http.authenticationProvider(customAuthenticationProvider);
 //        http.authorizeHttpRequests(
 //                c -> c.anyRequest().authenticated() //All the requests require  authentication i.e must be checked.
         http.authorizeHttpRequests(
