@@ -1,7 +1,6 @@
 package com.lanre.security_project1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
