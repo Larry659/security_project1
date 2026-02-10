@@ -2,17 +2,15 @@ package com.lanre.security_project1.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-@Entity
-public class AppUser{
 
-    @Id
-    private int id;
+public class AppUser implements UserDetails {
     private String username;
     private String password;
     private String authority;
@@ -26,35 +24,41 @@ public class AppUser{
     public AppUser() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    @Override
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    @Override
+    public String getUsername() {
+        return username;
     }
 
-    public String getAuthority() {
-        return authority;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> authority);
     }
 
-    public void setAuthority(String authority) {
-        this.authority = authority;
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
 }
