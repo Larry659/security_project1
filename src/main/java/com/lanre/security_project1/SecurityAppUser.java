@@ -1,25 +1,33 @@
 package com.lanre.security_project1;
 
-import org.jspecify.annotations.Nullable;
+import com.lanre.security_project1.entity.AppUser;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
-public class AppUser implements UserDetails {
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "READ");
+public class SecurityAppUser implements UserDetails {
+    private final AppUser appUseruser;
+
+    public SecurityAppUser(AppUser appUseruser) {
+        this.appUseruser = appUseruser;
     }
 
     @Override
-    public String getUsername() {
-        return "bill";
+    public final String getUsername() {
+        return appUseruser.getUsername();
     }
     @Override
     public String getPassword() {
-        return "12345";
+        return appUseruser.getPassword();
+    }
+
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(() -> appUseruser.getAuthority());
     }
 
     @Override
