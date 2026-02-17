@@ -12,11 +12,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 public class WebAuthorizationConfig {
 
-    @Autowired
-    private final CustomAuthenticationProvider customAuthenticationProvider;
 
-    public WebAuthorizationConfig(CustomAuthenticationProvider customAuthenticationProvider) {
-       this.customAuthenticationProvider = customAuthenticationProvider;
+
+    private final StaticKeyAuthenticationFilter filter;
+
+    public WebAuthorizationConfig(StaticKeyAuthenticationFilter filter) {
+        this.filter = filter;
     }
 
     @Bean
@@ -25,14 +26,13 @@ public class WebAuthorizationConfig {
 
 
 
-        http.addFilterBefore(
-                new RequestValidationFilter(), BasicAuthenticationFilter.class)
-
-
-                .addFilterAfter(
-                        new AuthenticationLoggingFilter(),//adds this filter after BasicAuthentication
-                        BasicAuthenticationFilter.class)
-
+//        http.addFilterBefore(
+//                new RequestValidationFilter(), BasicAuthenticationFilter.class)
+//
+//                .addFilterAfter(
+//                        new AuthenticationLoggingFilter(),//adds this filter after BasicAuthentication
+//                        BasicAuthenticationFilter.class)
+        http.addFilterAt(filter,BasicAuthenticationFilter.class)
        // http.httpBasic(Customizer.withDefaults()); //App uses HTTP Basic authentication.
         //http.authenticationProvider(customAuthenticationProvider);
 //        http.authorizeHttpRequests(
