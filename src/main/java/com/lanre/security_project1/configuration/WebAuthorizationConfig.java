@@ -26,13 +26,18 @@ public class WebAuthorizationConfig {
 
 
         http.addFilterBefore(
-                new RequestValidationFilter(), BasicAuthenticationFilter.class);
+                new RequestValidationFilter(), BasicAuthenticationFilter.class)
+
+
+                .addFilterAfter(
+                        new AuthenticationLoggingFilter(),//adds this filter after BasicAuthentication
+                        BasicAuthenticationFilter.class)
 
        // http.httpBasic(Customizer.withDefaults()); //App uses HTTP Basic authentication.
         //http.authenticationProvider(customAuthenticationProvider);
 //        http.authorizeHttpRequests(
 //                c -> c.anyRequest().authenticated() //All the requests require  authentication i.e must be checked.
-        http.authorizeHttpRequests(
+       .authorizeHttpRequests(
                 c -> c.anyRequest().permitAll() //None of the requests need  to be authenticated
         );
         return http.build();
