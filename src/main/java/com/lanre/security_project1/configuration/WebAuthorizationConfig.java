@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class WebAuthorizationConfig {
@@ -21,8 +22,14 @@ public class WebAuthorizationConfig {
     @Bean
     SecurityFilterChain configure(HttpSecurity http)
             throws Exception {
-        http.httpBasic(Customizer.withDefaults()); //App uses HTTP Basic authentication.
-        http.authenticationProvider(customAuthenticationProvider);
+
+
+
+        http.addFilterBefore(
+                new RequestValidationFilter(), BasicAuthenticationFilter.class);
+
+       // http.httpBasic(Customizer.withDefaults()); //App uses HTTP Basic authentication.
+        //http.authenticationProvider(customAuthenticationProvider);
 //        http.authorizeHttpRequests(
 //                c -> c.anyRequest().authenticated() //All the requests require  authentication i.e must be checked.
         http.authorizeHttpRequests(
