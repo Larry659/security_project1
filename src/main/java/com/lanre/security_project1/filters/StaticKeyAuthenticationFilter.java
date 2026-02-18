@@ -1,4 +1,4 @@
-package com.lanre.security_project1.configuration;
+package com.lanre.security_project1.filters;
 
 import jakarta.servlet.*;
 

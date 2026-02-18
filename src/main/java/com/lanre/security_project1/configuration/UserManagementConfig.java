@@ -1,7 +1,7 @@
 package com.lanre.security_project1.configuration;
 
 
-import com.lanre.security_project1.service.InMemoryUserDetailsService;
+//import com.lanre.security_project1.service.InMemoryUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
