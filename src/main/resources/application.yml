@@ -6,7 +6,7 @@ spring:
 
   datasource:
     username: balo
-    url: jdbc:postgresql://localhost:5432/ostock
+    url: jdbc:postgresql://localhost:5432/security
     password: "Lanrebalo@26"
     driver-class-name: org.postgresql.Driver
 

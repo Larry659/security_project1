@@ -1,7 +1,6 @@
 package com.lanre.security_project1.entity;
 
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,18 +8,22 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class AppUser implements UserDetails {
+
+public class User implements UserDetails {
+//    @Id
+//    private Long id;
     private String username;
     private String password;
     private String authority;
+    private boolean enabled;
 
-    public AppUser(String username, String password,String authority) {
+    public User(String username, String password, String authority) {
         this.username = username;
         this.password = password;
         this.authority = authority;
     }
 
-    public AppUser() {
+    public User() {
     }
 
     @Override
@@ -60,4 +63,11 @@ public class AppUser implements UserDetails {
     }
 
 
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
 }

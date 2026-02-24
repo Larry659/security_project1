@@ -22,19 +22,19 @@ import java.util.List;
 @Configuration
 public class UserManagementConfig {
 
-//    @Bean
-//    UserDetailsService userDetailsService() {
-//        var user = User.withUsername("john")
-//                .password("12345")
-//                .authorities("read")
-//                .build();
-//
-//        var user2 = User.withUsername("lanre")
-//                .password("54321")
-//                .authorities("read", "write")
-//                .build();
-//        return new InMemoryUserDetailsManager(user, user2);
-//    }
+    @Bean
+    UserDetailsService userDetailsService() {
+        var user = User.withUsername("john")
+                .password("12345")
+                .authorities("read")
+                .build();
+
+        var user2 = User.withUsername("lanre")
+                .password("54321")
+                .authorities("read", "write")
+                .build();
+        return new InMemoryUserDetailsManager(user, user2);
+    }
 //@Bean
 //public UserDetailsService userDetailsService() {
 //    List<SimpleGrantedAuthority> authorities =
@@ -44,18 +44,18 @@ public class UserManagementConfig {
 //    return new InMemoryUserDetailsService(users);
 
 //using datasource
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-       // return new JdbcUserDetailsManager(dataSource);
-        String usersByUsernameQuery =
-                "select username, password, enabled from users where username = ?";
-        String authsByUserQuery =
-                "select username, authority from spring.authorities where username = ?";
-        var userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        userDetailsManager.setUsersByUsernameQuery(usersByUsernameQuery);
-        userDetailsManager.setAuthoritiesByUsernameQuery(authsByUserQuery);
-        return userDetailsManager;
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService(DataSource dataSource) {
+//       // return new JdbcUserDetailsManager(dataSource);
+//        String usersByUsernameQuery =
+//                "select username, password, enabled from users where username = ?";
+//        String authsByUserQuery =
+//                "select username, authority from authorities where username = ?";
+//        var userDetailsManager = new JdbcUserDetailsManager(dataSource);
+//        userDetailsManager.setUsersByUsernameQuery(usersByUsernameQuery);
+//        userDetailsManager.setAuthoritiesByUsernameQuery(authsByUserQuery);
+//        return userDetailsManager;
+//    }
 
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
